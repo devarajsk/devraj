@@ -1,8 +1,12 @@
+import java.util.Scanner;
+
 public class Assignment3_1 
 {
 	public static void main(String[] args) {
 		int[] ar=new int[6];
-		int num=786524;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter the 6 digit integer number");
+		int num=sc.nextInt();
 		int temp=num;
 		int rem=0;
 		int i=0;
