@@ -36,7 +36,7 @@ public class Assign1
 				{
 					flag=true;
 				}
-				
+
 			}
 			if(flag==false)
 			{
@@ -116,82 +116,134 @@ public class Assign1
 			System.out.println("removed......");
 		}
 	}
-	public void sort()
-	{
-		for(int i=0;i<keyindex-1;i++)
-		{
-			for(int j=0;j<keyindex-i-1;j++)
-			{
-				if(key[j+1].compareTo(key[1+1])>0)
-	               {
-	                  String tempStr = key[j];
-	                   key[i] = key[j+1];
-	                   key[i+1] = tempStr;
-	                }
+	public void sort(Boolean basedOnKey, Boolean asc) {
+		if (basedOnKey) {
+			if (asc) {
+
+				for (int i = 0; i < key.length; i++) {
+					if (key[i] != null) {
+						for (int j = i + 1; j < key.length; j++) {
+
+							if (key[j].compareTo(key[i]) < 0) {
+								String temp = key[i];
+								String tval = value[i];
+								key[i] = key[j];
+								value[i] = value[j];
+								key[j] = temp;
+								value[j] = tval;
+
+							}
+						}
+
+					}
+				}
+			} else {
+				for (int i = 0; i < key.length; i++) {
+					for (int j = i + 1; j < key.length; j++) {
+						if (key[j].compareTo(key[i]) > 0) {
+							String temp = key[i];
+							String tval = value[i];
+							key[i] = key[j];
+							value[i] = value[j];
+							key[j] = temp;
+							value[j] = tval;
+
+						}
+					}
+				}
+
 			}
-		}
-		for(String ar:key)
-		{
-			System.out.println(ar);
+		} else {
+			if (asc) {
+				for (int i = 0; i < value.length; i++) {
+					for (int j = i + 1; j < value.length; j++) {
+						if (value[j].compareTo(value[i]) < 0) {
+							String temp = key[i];
+							String tval = value[i];
+							key[i] = key[j];
+							value[i] = value[j];
+							key[j] = temp;
+							value[j] = tval;
+
+						}
+					}
+				}
+			} else {
+				for (int i = 0; i < value.length; i++) {
+					for (int j = i + 1; j < value.length; j++) {
+						if (value[j].compareTo(value[i]) > 0) {
+							String temp = key[i];
+							String tval = value[i];
+							key[i] = key[j];
+							value[i] = value[j];
+							key[j] = temp;
+							value[j] = tval;
+						}
+					}
+				}
+
+			}
+
 		}
 	}
-	public void showAll()//fetching all keys and values
+
+public void showAll()//fetching all keys and values
+{
+	System.out.println("keys and values are....");
+	for(int i=0;i<keyindex;i++)
 	{
-		System.out.println("keys and values are....");
-		for(int i=0;i<keyindex;i++)
-		{
-			System.out.println(key[i]+"----->"+value[i]);
-		}
+		System.out.println(key[i]+"----->"+value[i]);
 	}
-	public int showSpaceAvailabile()//space availability
+}
+public int showSpaceAvailabile()//space availability
+{
+	return key.length-keyindex;
+
+}
+/* checking emptyness of arrays*/
+public boolean isEmpty()
+{
+	if(keyindex<0)
 	{
-		return key.length-keyindex;
-		
+		return true;
 	}
-	/* checking emptyness of arrays*/
-	public boolean isEmpty()
+	else
 	{
-		if(keyindex<0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return false;
 	}
-	/* getting key set reference */
-	public String[] getKeySet()
+}
+/* getting key set reference */
+public String[] getKeySet()
+{
+	String[] str = new String[keyindex];
+	for(int i=0;i<keyindex;i++)
 	{
-		String[] str = new String[keyindex];
-		for(int i=0;i<keyindex;i++)
-		{
-			str[i]=key[i];
-			
-		}
-		return str;
+		str[i]=key[i];
+
 	}
-	public static void main(String[] args) {
-		System.out.println("welcome........");
-		Assign1 as  = new Assign1();
-		as.put("dev", "cpg");
-		as.put("bang", "bangalore");
-		as.put("bang", "bangalore");
-		as.put("bang", "bangalore");
-		as.put("bang", "bangalore");
-		as.put("bang", "bangalore");
-		as.put("bang", "bangalore");
-		as.put("ch", "channai");
-		//as.get("dev");
-		//as.get(2);
-		as.showAll();
-		System.out.println("currently we have "+as.showSpaceAvailabile()+ " spaces are avialable");
-		//as.remove("dev");
-		//as.get("dev");
-		//as.sort(true, true);
-		System.out.println("emptyness of stack is "+as.isEmpty());
-		System.out.println("key set references "+as.getKeySet());
-	    //as.sort();
-	}
+	return str;
+}
+public static void main(String[] args) {
+	System.out.println("welcome........");
+	Assign1 as  = new Assign1();
+	as.put("dev", "cpg");
+	as.put("bang", "bangalore");
+	as.put("bang", "bangalore");
+	as.put("bang", "bangalore");
+	as.put("bang", "bangalore");
+	as.put("bang", "bangalore");
+	as.put("bang", "bangalore");
+	as.put("ch", "channai");
+	//as.get("dev");
+	//as.get(2);
+	as.showAll();
+	System.out.println("currently we have "+as.showSpaceAvailabile()+ " spaces are avialable");
+	
+	as.get("dev");
+	as.sort(true, true);
+	System.out.println("emptyness of stack is "+as.isEmpty());
+	System.out.println("key set references "+as.getKeySet());
+	as.remove("dev");
+}
 
 }
