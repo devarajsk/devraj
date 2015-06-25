@@ -1,7 +1,9 @@
 package assign8_2;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
+
+import assign8_1.ArrayListStack;
 
 /*
  * Queue implementation using
@@ -9,19 +11,19 @@ import java.util.LinkedList;
  * such as addFirst and getLast
  * Methods 
  */
-public class LinkListQueue {
-	LinkedList ls = new LinkedList();
+public class ArrayListQueue {
+	ArrayList<String> al = new ArrayList<String>();
 	/**
 	 * Here inserting the queue element
 	 * as the head element
-	 * it says we shoul add the any new 
+	 * it says we should add the any new 
 	 * element to the queue only  
 	 * @the the last
 	 * @param data
 	 */
-	public void insert(Object data)
+	public void insert(String obj)
 	{
-		ls.addLast(data);
+		al.add(obj);
 	}
 	/**
 	 * Deleting queue element
@@ -32,11 +34,17 @@ public class LinkListQueue {
 	 *  queue...
 	 *  Whether the queue is empty are not 
 	 */
+	
 	public void delete()
 	{
-		if(!ls.isEmpty())
+		if(!al.isEmpty())
 		{
-			ls.removeLast();
+			al.remove(0);
+			System.out.println("deleting of head element is done....");
+		}
+		else
+		{
+			System.out.println("Que is already empty");
 		}
 	}
 	/**
@@ -46,8 +54,8 @@ public class LinkListQueue {
 	 */
 	public void peek()
 	{
-		Object obj=ls.getLast();
-		System.out.println(obj);
+		Object obj=al.get(0);
+		System.out.println("peek element is "+obj);
 	}
 	/**
 	 * Here displaying all the 
@@ -57,24 +65,25 @@ public class LinkListQueue {
 	 */
 	public void display()
 	{
-		Iterator i=ls.iterator();
-		while(i.hasNext())
+		System.out.println("QUEUE elements are...");
+		System.out.println("**********************");
+		for(int i=al.size()-1;i>=0;i--)
 		{
-			System.out.println(i.next());
+			System.out.println(al.get(i));
 		}
+		System.out.println("**********************");
 	}
+	
 	public static void main(String[] args) {
-		LinkListQueue lq= new LinkListQueue();
-		lq.insert("dev");
-		lq.insert("chethu");
-		System.out.println("All elements of queue");
-		lq.display();
-		System.out.println("head element");
-		lq.peek();
-		lq.delete();
-		System.out.println("head element");
-		lq.peek();
-		System.out.println("All elements of queue");
-		lq.display();
+		ArrayListQueue alq= new ArrayListQueue();
+		alq.insert("dev");
+		alq.insert("yash");
+		alq.insert("karthik");
+		alq.insert("shivu");
+		alq.insert("mahesh");
+		alq.display();
+		alq.delete();
+		alq.display();
 	}
+	
 }
